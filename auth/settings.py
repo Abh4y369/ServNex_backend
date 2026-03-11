@@ -41,7 +41,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # ← New password without spaces
-DEFAULT_FROM_EMAIL = 'ServNex Official <servnexofficial@gmail.com>'
+DEFAULT_FROM_EMAIL = 'ServNex <servnexofficial@gmail.com>'
 SERVER_EMAIL = 'servnexofficial@gmail.com'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # ← COMMENT THIS OUT OR DELETE IT!
 
@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
     'rest_framework',
     'corsheaders',
     'users',
@@ -104,6 +107,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
@@ -187,3 +191,9 @@ AUTH_USER_MODEL="users.User"
 RAZR_KEY_ID= config('RAZR_KEY_ID')
 
 RAZR_KEY_SECRET= config('RAZR_KEY_SECRET')
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET')
+}
